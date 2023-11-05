@@ -1,14 +1,14 @@
-const {User} = require('../models')
+const {Stream} = require('../models')
 
 module.exports = {
     //get all user
     async index (req,res){
         try {
-            const users = await User.findAll()
-            res.send(users)
+            const streams = await Stream.findAll()
+            res.send(streams)
         } catch (error) {
             res.status(500).send({
-                error: 'The users information was incorrect'
+                error: 'The streaming information was incorrect'
             })
         }
     },
@@ -16,11 +16,11 @@ module.exports = {
     //create user
     async create (req,res) {
         try {
-            const user = await User.create(req.body)
-            res.send(user.toJSON())
+            const stream = await Stream.create(req.body)
+            res.send(stream.toJSON())
         } catch (error) {
             res.status(500).send({
-                error: 'The users information was incorrect'
+                error: 'The streaming information was incorrect'
             })
         }
     },
@@ -28,15 +28,15 @@ module.exports = {
     //edit user
     async put (req,res){
         try {
-            await User.update(req.body,{
+            await Stream.update(req.body,{
                 where: {
-                    id: req.params.userId
+                    id: req.params.streamId
                 }
             })
             res.send(req.body)
         } catch (error) {
             res.status(500).send({
-                error: 'Update user information was incorrect'
+                error: 'Update streaming information was incorrect'
             })
         }
     },
@@ -44,21 +44,21 @@ module.exports = {
     //delete user
     async delete (req, res){
         try {
-            const user = await User.findOne({
+            const stream = await Stream.findOne({
                 where: {
-                    id: req.params.userId
+                    id: req.params.streamId
                 }
             })
-            if (!user){
+            if (!stream){
                 return res.status(403).send({
-                    error: 'The user id is not found'
+                    error: 'The streaming id is not found'
                 })
             }
-            await user.destory()
-            res.send(user)
+            await stream.destory()
+            res.send(stream)
         } catch (error) {
             res.status(500).send({
-                error: 'Delete user information was incorrect'
+                error: 'Delete streaming information was incorrect'
             })
         }
     },
@@ -66,20 +66,20 @@ module.exports = {
     //show user by id
     async show (req,res){
         try {
-            const user = await User.findOne({
+            const stream = await Stream.findOne({
                 where: {
-                    id: req.params.userId
+                    id: req.params.streamId
                 }
             })
-            if (!user){
+            if (!stream){
                 return res.status(403).send({
-                    error: 'The user id is not found'
+                    error: 'The streaming id is not found'
                 })
             }
-            res.send(user)
+            res.send(stream)
         } catch (error) {
             res.status(500).send({
-                error: 'User information was incorrect'
+                error: 'Streaming information was incorrect'
             })
         }
     }

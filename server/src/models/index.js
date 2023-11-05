@@ -7,7 +7,7 @@ const db = {}
 
 const sequelize = new Sequelize (
     config.db.databse,
-    config.db.user,
+    config.db.stream,
     config.db.password,
     config.db.options
 )

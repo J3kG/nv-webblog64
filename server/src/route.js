@@ -1,26 +1,20 @@
-const UserController = require ('./controller/UserController')
-const UserAuthenController = require ('./controller/UserAuthenController')
-const isAuthenController = require('./authen/isAuthenController')
+const StreamController = require ('./controller/StreamController')
 
 module.exports = (app) => {
     //get all
-    app.get('/users', 
-    isAuthenController,
-    UserController.index)
+    app.get('/streams',
+    StreamController.index)
 
     //create
-    app.post('/user', UserController.create)
+    app.post('/stream', StreamController.create)
 
     //edit
-    app.put('/user/:userId', UserController.put)
+    app.put('/stream/:streamId', StreamController.put)
 
     //delete
-    app.delete('/user/:userId', UserController.delete)
+    app.delete('/stream/:streamId', StreamController.delete)
 
     //show by id
-    app.get('/user/:userId', UserController.show)
-
-    //login
-    app.post('/login', UserAuthenController.login)
+    app.get('/stream/:streamId', StreamController.show)
 
 }

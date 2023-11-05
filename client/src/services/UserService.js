@@ -1,19 +1,19 @@
-import Api from "./Api";
+import Api from '@/services/Api'
 
 export default {
     index (search) {
-        return Api().get('users')
+        return Api().get('streams')
     },
-    show (userId) {
-        return Api().get('user/'+userId)
+    show (streamId) {
+        return Api().get('stream/' + streamId)
     },
-    post (user) {
-        return Api().post('user', user)
+    post (stream) {
+        return Api().post('stream', stream)
     },
-    put (user) {
-        return Api().put('user/'+user.id, user)
+    put (stream) {
+        return Api().put('stream/' + stream.id, stream)
     },
-    delete (user) {
-        return Api().delete('user/'+user.id, user)
-    },
+    delete (stream) {
+        return Api().delete('stream/' + stream.id, stream)
+    }
 }
